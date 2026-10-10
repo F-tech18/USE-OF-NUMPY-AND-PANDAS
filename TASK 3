@@ -1,0 +1,131 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Assignment 3 \u2013 Working with Matplotlib\n",
+        "## Objective\n",
+        "Create and customize four common chart types."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 1. Line plot\n",
+        "Plot the supplied x and y values, with a title, axis labels, and grid."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "x = [1, 2, 3, 4, 5]\n",
+        "y = [10, 15, 25, 30, 50]\n",
+        "plt.figure(figsize=(7, 4))\n",
+        "plt.plot(x, y, marker='o')\n",
+        "plt.title('Values Across X')\n",
+        "plt.xlabel('X')\n",
+        "plt.ylabel('Y')\n",
+        "plt.grid(True)\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 2. Bar chart\n",
+        "Compare student marks and customize the colors and title."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "students = ['John', 'Jane', 'Alice', 'Bob']\n",
+        "marks = [75, 85, 60, 90]\n",
+        "bar_colors = ['steelblue', 'seagreen', 'goldenrod', 'mediumpurple']\n",
+        "plt.figure(figsize=(7, 4))\n",
+        "plt.bar(students, marks, color=bar_colors)\n",
+        "plt.title('Student Marks')\n",
+        "plt.xlabel('Student')\n",
+        "plt.ylabel('Marks')\n",
+        "plt.ylim(0, 100)\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 3. Pie chart\n",
+        "Show regional revenue shares and highlight North America, which has the largest share."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "regions = ['North America', 'Europe', 'Asia', 'Others']\n",
+        "revenue = [45, 25, 20, 10]\n",
+        "explode = [0.1, 0, 0, 0]\n",
+        "plt.figure(figsize=(6, 6))\n",
+        "plt.pie(revenue, labels=regions, autopct='%1.1f%%', startangle=90, explode=explode)\n",
+        "plt.title('Revenue Distribution by Region')\n",
+        "plt.axis('equal')\n",
+        "plt.show()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 4. Histogram\n",
+        "Generate 1,000 random integers from 1 to 100 and display their frequency distribution."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "import numpy as np\n",
+        "\n",
+        "rng = np.random.default_rng(42)\n",
+        "random_values = rng.integers(1, 101, size=1000)\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.hist(random_values, bins=20, edgecolor='black')\n",
+        "plt.title('Frequency Distribution of 1,000 Random Integers')\n",
+        "plt.xlabel('Value')\n",
+        "plt.ylabel('Frequency')\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ]
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
