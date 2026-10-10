@@ -1,0 +1,130 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Assignment 2 \u2013 Working with Pandas\n",
+        "## Objective\n",
+        "Create, inspect, filter, group, sort, and export employee data using a Pandas DataFrame."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 1. Create and inspect the DataFrame\n",
+        "Build a small employee dataset and display its first five rows, summary statistics, and HR average salary."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data = {\n",
+        "    'Name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve'],\n",
+        "    'Age': [24, 27, 22, 32, 29],\n",
+        "    'Department': ['HR', 'Finance', 'IT', 'Marketing', 'HR'],\n",
+        "    'Salary': [45000, 54000, 50000, 62000, 47000]\n",
+        "}\n",
+        "df = pd.DataFrame(data)\n",
+        "display(df.head())\n",
+        "print(\"Summary statistics for Age and Salary:\")\n",
+        "display(df[['Age', 'Salary']].describe())\n",
+        "hr_average = df.loc[df['Department'] == 'HR', 'Salary'].mean()\n",
+        "print(f\"Average HR salary: {hr_average:.2f}\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 2. Calculate bonuses\n",
+        "Create a `Bonus` column equal to 10% of each employee's salary."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "df['Bonus'] = df['Salary'] * 0.10\n",
+        "display(df)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 3. Filter employees by age\n",
+        "Select employees whose ages are between 25 and 30, including both endpoints."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "age_filtered = df[df['Age'].between(25, 30)]\n",
+        "display(age_filtered)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 4. Average salary by department\n",
+        "Group employees by department and calculate the average salary for each group."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "department_average = df.groupby('Department', as_index=False)['Salary'].mean()\n",
+        "department_average = department_average.rename(columns={'Salary': 'Average_Salary'})\n",
+        "display(department_average)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 5. Sort and export to CSV\n",
+        "Sort employee records by salary from lowest to highest, then save the result as `employees_sorted.csv`."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "sorted_df = df.sort_values(by='Salary', ascending=True)\n",
+        "display(sorted_df)\n",
+        "sorted_df.to_csv('employees_sorted.csv', index=False)\n",
+        "print(\"Saved employees_sorted.csv\")"
+      ]
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
